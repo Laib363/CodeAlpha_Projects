@@ -1,4 +1,4 @@
-# 🛍️ CodeAlpha_Projects: Full-Stack E-Commerce Website
+ Full-Stack E-Commerce Website
 
 This repository hosts a **fully functional E-Commerce Website** built using **Node.js, Express.js, and EJS**. It serves as a comprehensive demonstration of a full-stack application, featuring secure user authentication, authorization, and integrated image management via Cloudinary.
 
