@@ -1,13 +1,11 @@
 /* Ensure equal height and uniform images */
 .card {
-  
   border-radius: 12px;
   display: flex;
   height: 100%;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 .card img {
   height: 15rem; /* same height for all images */
@@ -18,7 +16,6 @@
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  
 }
 
 /* Fix all card images to the same height */
@@ -33,6 +30,7 @@
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  overflow: visible; /* conservative default */
 }
 
 /* Center and balance button spacing */
@@ -45,27 +43,19 @@
   flex-grow: 1;
 }
 
-/* ADD THIS TO THE END OF YOUR /style.css */
-/* -------------------------------------- */
-
 /* Ensure the main list of links uses flexbox */
 .navbar-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    padding: 0;
-    margin: 0;
-   
-   
+  display: flex !important;
+  flex-direction: row !important;
+  padding: 0;
+  margin: 0;
 }
 
 /* Ensure individual links/items behave correctly */
 .navbar-nav .nav-item {
-    display: list-item !important; /* Keep as list-item or block */
-    margin: 0 10px; /* Add a small, controlled horizontal margin */
-     
-     
+  display: list-item !important; /* Keep as list-item or block */
+  margin: 0 10px; /* Add a small, controlled horizontal margin */
 }
-
 
 /* Cart page layout adjustments (replace or merge into your cart.css) */
 
@@ -217,103 +207,45 @@
   padding: 2.5rem;
   box-sizing: border-box;
 }
-.empty-cart-card .fa-cart-shopping { font-size: 2.1rem; color: #6c757d; flex: 0 0 auto; }
+.empty-cart-card .fa-cart-shopping {
+  font-size: 2.1rem;
+  color: #6c757d;
+  flex: 0 0 auto;
+}
 .empty-cart-card .card-title,
-.empty-cart-card .card-text { margin: 0; flex: 1 1 auto; min-width: 0; text-align: center; }
-.empty-cart-card .btn { display: inline-block; width: auto; padding: 0.45rem 0.9rem; margin: 0; flex: 0 0 auto; align-self: center; }
+.empty-cart-card .card-text {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: center;
+}
+.empty-cart-card .btn {
+  display: inline-block;
+  width: auto;
+  padding: 0.45rem 0.9rem;
+  margin: 0;
+  flex: 0 0 auto;
+  align-self: center;
+}
 @media (max-width: 767.98px) {
-  .empty-cart-card .card-body { flex-direction: column; text-align: center; gap: 0.75rem; padding: 1.75rem; }
+  .empty-cart-card .card-body {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1.75rem;
+  }
 }
 
 /* ---------- Utility tweaks ---------- */
-/* Ensure no global rule is forcing card bodies to behave as rows */
-.card-body { /* conservative default — won't override more specific rules above */
-  overflow: visible;
-}
-
 /* Optional subtle improvements */
 .card { border-radius: 8px; }
 .shadow-lg { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
 /* Image box and card layout */
 .img-wrap {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #f8f9fa;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
-}
-.img-wrap img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-/* Card basics */
-.card-link { text-decoration: none; color: inherit; }
-.listing-card {
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.25s ease;
-  --dominant: #ffffff;       /* fallback */
-  --dominant-text: #111;     /* fallback */
-  background-color: white;
-  color: inherit;
-  border-radius: 8px;
-  overflow: visible;
-}
-.listing-card .card-body {
-  padding-top: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  min-height: 88px;
-}
-
-/* Title on its own line */
-.title-row { display: block; }
-.listing-title {
-  font-size: 1rem;
-  line-height: 1.15;
-  margin: 0;
-  color: #111;
-  word-break: break-word;
-}
-
-/* Price on the separate line and right aligned */
-.price-row {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.price-text {
-  margin: 0;
-  font-weight: 600;
-  color: #444;
-}
-
-/* Hover: use the computed CSS variable color (set by JS) */
-.listing-card:hover {
-  background-color: var(--dominant, #f8f9fa);
-  color: var(--dominant-text, #111);
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
-}
-
-/* Make sure title & price contrast on hover — if JS set --dominant-text, that will apply.
-   Also ensure readability for children elements like price text. */
-.listing-card:hover .listing-title,
-.listing-card:hover .price-text {
-  color: var(--dominant-text, inherit);
-}
-
-/* Responsive adjustments */
-@media (max-width: 767.98px) {
-  .img-wrap { height: 160px; }
-}
-
-/* small subtle focus for accessibility */
-.listing-card:focus-within {
-  outline: 2px solid rgba(0,123,255,0.25);
-  outline-offset: 2px;
+  height: 200px;}
+  
+  /* FIX FOR PRODUCT SHOW PAGE (STACKING) */
+.product-detail-card .card-body {
+  display: block; 
 }

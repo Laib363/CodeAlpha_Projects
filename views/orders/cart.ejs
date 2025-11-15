@@ -17,11 +17,7 @@
               <% currentUser.cart.forEach(item => { %>
                 <% totalAmount += item.price; %>
                 <div class="d-flex align-items-center mb-3 pb-3 border-bottom cart-item">
-                  <img 
-                    src="<%= item.image %>" 
-                    alt="<%= item.title %>" 
-                    class="rounded-3 me-3 product-thumb"
-                  >
+                <img src="<%= item.image.url %>" class="rounded-3 product-thumb" alt="Product Image">
                   <div class="flex-grow-1 me-3 info-wrap">
                     <h5 class="mb-0 item-title"><%= item.title %></h5>
                     <p class="text-muted small mb-0 item-desc"><%= (item.description || '').substring(0, 80) %>...</p>

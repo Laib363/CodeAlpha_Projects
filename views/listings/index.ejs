@@ -8,9 +8,10 @@
       <div class="col">
         <a href="/listings/<%= listing._id %>" class="card-link">
           <div class="card h-100 listing-card shadow-sm border-0">
+
             <div class="img-wrap">
               <img 
-                src="<%= listing.image ? listing.image : 'https://placehold.co/300x200/eeeeee/cccccc?text=No+Image' %>" 
+                src="<%= listing.image && listing.image.url ? listing.image.url : 'https://placehold.co/400x300/e0e0e0/555555?text=No+Image' %>" 
                 class="card-img-top" 
                 alt="<%= listing.title %>"
               >
@@ -18,8 +19,17 @@
 
             <div class="card-body">
               <h5 class="card-title fw-bold"><%= listing.title %></h5>
-              <p class="card-text fs-5">PKR <%= listing.price.toLocaleString("en-pk") %></p>
+
+              <p class="card-text fs-5">
+                PKR 
+                <% if (listing.price !== null && listing.price !== undefined) { %>
+                  <%= listing.price.toLocaleString() %>
+                <% } else { %>
+                  N/A
+                <% } %>
+              </p>
             </div>
+
           </div>
         </a>
       </div>
@@ -27,12 +37,12 @@
   </div>
 </div>
 
-<!-- Simple CSS to make cards clickable and images fully visible -->
 <style>
   .card-link {
     text-decoration: none;
     color: inherit;
   }
+
   .listing-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
@@ -41,25 +51,22 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
   }
 
-  /* Image wrapper keeps consistent height and centers image */
   .img-wrap {
-    height: 200px;               /* desired image box height */
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #f8f9fa;         /* subtle background for portrait/landscape images */
-    border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem;
+    background: #f8f9fa;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
   }
   .img-wrap img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;         /* show the whole image without cropping */
-    display: block;
+    object-fit: contain;
   }
 
-  /* Tweak card body spacing */
   .listing-card .card-body {
     padding-top: 0.75rem;
   }

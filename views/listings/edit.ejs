@@ -1,34 +1,48 @@
-<%- layout('layouts/boilerplate') -%>
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow-sm border-0 p-4">
+            <h3 class="mb-4">Edit Product Listing</h3>
+            <!-- ACTION: /listings/:id, METHOD: PUT -->
+            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate
+                enctype="multipart/form-data">
 
-<div class="card shadow-sm p-3">
-    <h2 class="mb-3">Edit Your Product Details:</h2>
-    <form method="POST" action="/listings/<%=listing._id %>?_method=PUT" >
-    
-    <div class="mb-3">
-   <label for="title" class="form-label">Product Title</label>
-    <input  id="title" name="listing[title]"   value="<%= listing.title %>"type="text" class="form-control">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" id="title" class="form-control" value="<%= listing.title %>" required>
+                    <div class="invalid-feedback">Please enter a title.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" id="description" class="form-control" required><%= listing.description %></textarea>
+                    <div class="invalid-feedback">Please enter a detailed description.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label d-block">Current Image</label>
+                    <!-- Display current image and its URL -->
+                    <img src="<%= listing.image.url %>" class="img-thumbnail" alt="Current listing image" style="width: 200px; height: auto;">
+                    <small class="form-text text-muted d-block mt-2">To keep the current image, do not select a new file.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Product Image</label>
+                    <!-- File input for new image upload (no 'required' here) -->
+                    <input type="file" name="listing[image]" id="image" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price (PKR)</label>
+                    <input type="number" name="listing[price]" id="price" class="form-control" value="<%= listing.price %>" required min="0">
+                    <div class="invalid-feedback">Please enter a valid price.</div>
+                </div>
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-dark btn-lg">Update Listing</button>
+                    <a href="/listings/<%= listing._id %>" class="btn btn-secondary btn-lg mt-2">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <br> <br>
-       
-       <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea  id="description" name= "listing[description]"class="form-control" > <%= listing.description %> </textarea>
-       </div>
-        <br> <br>
-        
-        <div class="mb-3">
-        <label for="price" class="form-label">Price</label>
-        <input id="price" name="listing[price]" value="<%=listing.price %>" type="number" class="form-control">
-        </div>
-        <br> <br>
-        <div class="mb-3">
-        <label for="image" class="form-label">Image URL</label>
-        <input id="image" name="listing[image]"  value="<%=listing.image %>" type="text">
-        </div>
-        <br> <br>
-      <button  type="submit" class="btn btn-dark btn-sm">Edit</button>
-             </form>
 </div>
-    
-    
-
